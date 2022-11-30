@@ -6,7 +6,7 @@
 
 # Autor
 
-**Dra. Paula SM Celis Plá, Profesora de la Universidad de Playa Ancha, Directora del Laboratorio de investigación acuático ambiental (LACER) del HUB Ambiental; email: paulacelispla@upla.cl** 
+**Dra. Paula SM Celis-Plá, Profesora de la Universidad de Playa Ancha, Directora del Laboratorio de investigación acuático ambiental (LACER) del HUB Ambiental; email: paulacelispla@upla.cl** 
 
 
 # Descripción del problema a resolver 
