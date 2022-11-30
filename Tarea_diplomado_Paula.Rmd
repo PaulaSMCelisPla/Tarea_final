@@ -1,7 +1,7 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 ----
 title: "Tarea_diplomado_Paula"
@@ -226,6 +226,7 @@ PCA_Lesso
 ```{r}
 get_eigenvalue(PCA_Lesso)
 fviz_eig(PCA_Lesso)
+
 ```
 # Grafica por sitio
 
