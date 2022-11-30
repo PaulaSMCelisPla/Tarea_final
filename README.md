@@ -1,6 +1,6 @@
-# Tarea_final_diplomado
+## Tarea_final_diplomado
 
-# Título del Trabajo 
+## Título del Trabajo 
 
 **Evaluación de las respuestas fisiológicas y ambientales del alga *Lessonia spicata* en la Bahía de Valparaíso en prescencia de Cambio Climático**
 

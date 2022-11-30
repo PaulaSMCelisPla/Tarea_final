@@ -153,3 +153,5 @@ dist_euclidea <- stats::dist(val_estandarizado[10:18], method = "euclidean")
 ## 10. Presenta, interpreta resultados y realiza conclusión
 
 
+
+
