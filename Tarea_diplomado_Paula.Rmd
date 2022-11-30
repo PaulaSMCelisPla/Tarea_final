@@ -1,0 +1,252 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+----
+title: "Tarea_diplomado_Paula"
+author: "Dra. Paula Celis-Plá"
+date: "2022-10-04"
+output:
+  pdf_document: default
+  html_document: default
+editor_options: 
+  markdown: 
+    wrap: 72
+----
+**Evaluación de las respuestas fisiológicas y ambientales del alga *Lessonia spicata* en la Bahía de Valparaíso en prescencia de Cambio Climático**
+
+## Descripción del Trabajo
+
+La data actual corresponde a valores de variables fisiológicas y ambientales para el alga parda *Lessonia spicata*. 
+
+Este estudio tiene por objetivo, evaluar la diferencias estadísticas de las variables fisiológicas y variables ambientales respecto a las variables categóricas estación del Año con 4 niveles; Otoño, Invierno, Primavera y Verano, y tiempo para 3 ciclos diarios con 3 niveles; dia 1, dia 2 y dia 3 con 9 valores.
+
+Las variables fisológicas analizadas en este estudio fueron Clorofila a o Cla (expresada en microgramos * gramos-1 de peso seco), Clorofila c = Clc (expresada en microgramos * gramos-1 de peso seco), Carotenos o Car (expresada en microgramos * gramos-1 de peso seco), Compuestos fenólicos o PC (expresada en miligramos * gramos-1 de peso seco), Actividad antioxidante o DPPH = actividad antioxidante (expresada en micromol de unidades de trolox * gramos-1 de peso seco), y las variables ambientales; temperatura (expresada en °C), pH (expresada en unidades de pH), Salinidad
+(expresada en psu) y Radiación fotosinteticamente activa o PAR (expresada en micromoles de fotones * m-2 * s-1), con un total de 108 observaciones.
+
+## Habilita Librerias
+
+```{r setup, include=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stats)
+library(graphics)
+library(psych)
+library(readxl)
+library(agridat)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+```
+
+## Variables categóricas Seasons, time y replicate asigna factor
+
+## Transforma variables a factores
+
+```{r}
+Datos_Proyecto <- read_excel("Datos_Proyecto.xlsx")
+summary(Datos_Proyecto)
+
+Datos_Proyecto$Seasons <- as.factor(Datos_Proyecto$Seasons)
+Datos_Proyecto$time <- as.factor(Datos_Proyecto$time)
+summary(Datos_Proyecto)
+```
+
+## Histogramas con etiquetas y títulos
+
+```{r}
+p1 <- ggplot(Datos_Proyecto, aes(Chla)) + geom_histogram(bins = 8, color ="blue", fill="blue")+ labs(title="Histograma de Clorofila a", x="Clorofila a", y="Frecuencia") 
+
+p2 <- ggplot(Datos_Proyecto, aes(Chlc)) + geom_histogram(bins = 8, color ="red", fill="red")+ labs(title="Histograma de Clorofila c", x="Clorofila c", y="Frecuencia")
+p3 <- ggplot(Datos_Proyecto, aes(Car)) + geom_histogram(bins = 8, color ="green", fill="green")+ labs(title="Histograma de Carotenos", x="Carotenos", y="Frecuencia")
+p4 <- ggplot(Datos_Proyecto, aes(PC)) + geom_histogram(bins = 8, color ="yellow", fill="yellow")+ labs(title="Histograma de Compuestos fenólicos", x="Compuestos fenólicos", y="Frecuencia")
+p5 <- ggplot(Datos_Proyecto, aes(DPPH)) + geom_histogram(bins = 8, color ="brown", fill="brown")+ labs(title="Histograma de actividad antioxidante", x="Actividad antioxidante", y="Frecuencia")
+p6 <- ggplot(Datos_Proyecto, aes(Temperature)) + geom_histogram(bins = 8, color ="pink", fill="pink")+ labs(title="Histograma de Temperatura", x="Temperature", y="Frecuencia")
+p7 <- ggplot(Datos_Proyecto, aes(pH)) + geom_histogram(bins = 8, color ="blue", fill="blue")+ labs(title="Histograma de pH", x="pH", y="Frecuencia")
+p8 <- ggplot(Datos_Proyecto, aes(Salinity)) + geom_histogram(bins = 8, color ="red", fill="red")+ labs(title="Histograma de Salinidad", x="Salinidad", y="Frecuencia")
+p9 <- ggplot(Datos_Proyecto, aes(PAR)) + geom_histogram(bins = 8, color ="green", fill="green")+ labs(title="Histograma de Radiación PAR", x="PAR", y="Frecuencia")
+
+gridExtra::grid.arrange(p1, p2, p3, p4, p5, ncol = 2)
+gridExtra::grid.arrange(p6, p7, p8, p9, ncol = 2)
+```
+
+## 4. Datos balanceados y tablas de frecuencia
+
+** Los datos estan balanceados
+
+```{r}
+str(Datos_Proyecto)
+knitr::kable(table(Datos_Proyecto$Seasons, Datos_Proyecto$time), caption = "Tabla de contingencia")
+```
+
+## 5. Relación entre variables cuantitativas y factores
+
+** No se incluiran las variables Seasons, time, y Replicate porque son
+variables categóricas.
+
+```{r}
+summary(Datos_Proyecto)
+```
+
+## 5. Graficas de correlación de variables continuas (pearson)
+
+```{r}
+pairs.panels(Datos_Proyecto[,3:11], method = "pearson", hist.col = "blue", density = TRUE, font=4)
+
+```
+
+** Se muestran correlación entre las primeras 4 variables continuas
+
+```{r}
+pairs.panels(Datos_Proyecto[,3:7], method = "pearson", hist.col = "blue", density = TRUE, font=2)
+```
+
+** Se muestra correlación entre las segundas 4 variables continuas
+
+```{r}
+pairs.panels(Datos_Proyecto[,8:11], method = "pearson", hist.col = "blue", density = TRUE, font=2)
+```
+
+## 5. Relación entre variables continuas y factores (boxplot)
+
+```{r}
+ggplot(Datos_Proyecto, aes(x= Seasons, y=Chla))+geom_boxplot(fill="olivedrab1")+labs(title = "BoxPlot", x= "Seasons", y= "Clorofila a")
+ggplot(Datos_Proyecto, aes(x= Seasons, y=Chlc))+geom_boxplot(fill="red")+labs(title = "BoxPlot", x= "Seasons", y= "Clorofila c")
+ggplot(Datos_Proyecto, aes(x= Seasons, y=Car))+geom_boxplot(fill="blue")+labs(title = "BoxPlot", x= "Seasons", y= "Carotenos")
+ggplot(Datos_Proyecto, aes(x= Seasons, y=PC))+geom_boxplot(fill="green")+labs(title = "BoxPlot", x= "Seasons", y= "Compuestos fenólicos")
+ggplot(Datos_Proyecto, aes(x= Seasons, y=DPPH))+geom_boxplot(fill="brown")+labs(title = "BoxPlot", x= "Seasons", y= "DPPH")
+ggplot(Datos_Proyecto, aes(x= Seasons, y=Temperature))+geom_boxplot(fill="blue")+labs(title = "BoxPlot", x= "Seasons", y= "Temperatura")
+ggplot(Datos_Proyecto, aes(x= Seasons, y=pH))+geom_boxplot(fill="green")+labs(title = "BoxPlot", x= "Seasons", y= "pH")
+ggplot(Datos_Proyecto, aes(x= Seasons, y=Salinity))+geom_boxplot(fill="brown")+labs(title = "BoxPlot", x= "Seasons", y= "Salinity")
+ggplot(Datos_Proyecto, aes(x= Seasons, y=PAR))+geom_boxplot(fill="yellow")+labs(title = "BoxPlot", x= "Seasons", y= "Radiación PAR")
+```
+
+## 6. Identificación si existen errores, datos faltantes o error atípico
+
+** En la variable Salinidad, existe poca dispersión de los datos en
+las estaciones de primavera y verano, se registran datos muy similares,
+por ellos se observó poca dispersión.
+
+** No existen datos faltantes para cada variable.
+
+** Los errores típicos en las variables se identifican a continuación;
+
+Variable Chlc : para la estación winter se registra un outlier Variable
+Car : para la estación summer se registra un outlier Variable PC : se
+registran 2 valores en Spring Variable Temperature: 3 valores en spring
+Variable pH : 5 valores en spring Variable Salinity: 3 valores en
+spring, 2 en summer y 1 en winter Variable PAR: 1 en autumn, 1 en spring
+y 1 en summer
+
+## 7. Resumen de los datos con tablas y estadística descriptiva
+
+```{r}
+Datos_Proyecto <- read_excel("Datos_Proyecto.xlsx" , sheet= 1)
+head(Datos_Proyecto)
+select(Datos_Proyecto, Chla, Chlc, Car, DPPH)
+```
+
+```{r}
+Datos_tab <- Datos_Proyecto %>% group_by(Seasons) %>% summarize(n = n(), 
+Promedio_Chla = mean(Chla), Maximo_Chla = max(Chla), Promedio_Chlc = mean(Chlc), Maximo_Chlc = max(Chlc), Promedio_Car = mean(Car), Maximo_Car = max(Car), Promedio_PC = mean(PC), Maximo_PC = max(PC), Promedio_DPPH = mean(DPPH), Maximo_DPPH = max(DPPH), Promedio_Temperature = mean(Temperature), Maximo_Temperature = max(Temperature),Promedio_pH = mean(pH), Maximo_pH = max(pH), Promedio_Salinity = mean(Salinity), Maximo_Salinity = max(Salinity), Promedio_PAR = mean(PAR), Maximo_PAR = max(PAR))
+
+Datos_tab
+
+knitr::kable(Datos_tab, caption = "Tabla de medidas resumen")
+```
+
+```{r}
+Datos_tab2 <- Datos_Proyecto %>% group_by(time) %>% summarize(n = n(), 
+Promedio_Chla = mean(Chla), Maximo_Chla = max(Chla), Promedio_Chlc = mean(Chlc), Maximo_Chlc = max(Chlc), Promedio_Car = mean(Car), Maximo_Car = max(Car), Promedio_PC = mean(PC), Maximo_PC = max(PC), Promedio_DPPH = mean(DPPH), Maximo_DPPH = max(DPPH), Promedio_Temperature = mean(Temperature), Maximo_Temperature = max(Temperature),Promedio_pH = mean(pH), Maximo_pH = max(pH), Promedio_Salinity = mean(Salinity), Maximo_Salinity = max(Salinity), Promedio_PAR = mean(PAR), Maximo_PAR = max(PAR))
+
+Datos_tab2
+
+knitr::kable(Datos_tab2, caption = "Tabla de medidas resumen")
+```
+
+## 8. Utiliza Paquetes para importar datos a R como readxl o similar y paquetes tidyr, dplyr, ggplot2
+
+```{r}
+messy <- read_excel("Datos_Proyecto.xlsx")
+Datos_Proyecto$Seasons <- as.factor(Datos_Proyecto$Seasons)
+Datos_Proyecto$time <- as.factor(Datos_Proyecto$time)
+summary(Datos_Proyecto)
+summary(messy)
+```
+
+## 9. Proponer hipótesis y realiza análisis estadístico de los datos, incluye evaluación de supuestos si corresponde
+
+Hipótesis Nula: Existe una estructura de grupos separados por las variables categoricas estacionalidad y día. 
+Hipótesis alternativa: No existe una estructura de grupos separados por las variables categoricas estacionalidad y día. 
+
+
+```{r}
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(knitr)
+library(pander)
+library(psych) # Graficas de correlación
+library(factoextra) # distancia euclideana
+library(vegan) # 	Community Ecology Package: Ordination, Diversity and Dissimilarities
+library(dendextend) # extiende opciones de visualización
+```
+
+# Importar datos proyecto.
+```{r}
+datos_PCA <- read_excel("Datos_Proyecto.xlsx", sheet = 1)
+summary(datos_PCA)
+datos_PCA$Seasons <- as.factor(datos_PCA$Seasons)
+datos_PCA$time <- as.factor(datos_PCA$time)
+head(datos_PCA[,3:11]) %>% pander(caption ="Variables ecofisiologicas y ambientales en Lessonia spicata")
+str(datos_PCA)
+
+```
+
+datos_PCA <- datos_PCA %>% select(Seasons, time)
+
+datos_PCA_mat <- as.matrix(datos_PCA[,-c(1:2)])
+```{r}
+```
+
+# Correlación entre variables
+
+```{r}
+pairs.panels(datos_PCA[,3:7], method = "pearson")
+pairs.panels(datos_PCA[,8:11], method = "pearson")
+```
+
+# Realiza PCA
+
+PCA <- prcomp(datos_PCA, scale = TRUE)
+PCA
+```{r}
+
+```
+
+# Crea nuevas variables estandarizadas
+```{r}
+val_estandarizado <- datos_PCA %>%
+  select(Chla, Chlc, Car, PC, DPPH, Temperature, pH, Salinity, PAR) %>%
+  mutate(Chla1 = (Chla - mean(Chla)) / sd(Chla),Chlc1 = (Chlc - mean(Chlc)) / sd(Chlc), Car1 = (Car - mean(Car)) / sd(Car),
+    PC1 = (PC - mean(PC)) / sd(PC), DPPH1 = (DPPH - mean(DPPH)) / sd(DPPH), Temperature1 = (Temperature - mean(Temperature)) / sd(Temperature), pH1 = (pH - mean(pH)) / sd(pH), Salinity1 = (Salinity - mean(Salinity)) / sd(Salinity), PAR1 = (PAR - mean(PAR)) / sd(PAR))
+```
+
+# Calcula matriz de distancia
+```{r}
+dist_euclidea <- dist(val_estandarizado[10:18]) #distancia euclidiana 
+```
+
+# Realiza PERMANOVA
+```{r}
+permanova <- adonis2(dist_euclidea ~ Seasons*time , method = "bray", data=datos_PCA, permutations=999)
+
+permanova %>% pander()
+
+dist_euclidea <- stats::dist(val_estandarizado[10:18], method = "euclidean")
+```
+
+
+## 10. Presenta, interpreta resultados y realiza conclusión
+
+
