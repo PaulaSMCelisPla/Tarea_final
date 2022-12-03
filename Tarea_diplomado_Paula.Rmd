@@ -262,13 +262,12 @@ dist_euclidea <- dist(val_estandarizado[10:18]) #distancia euclidiana
 # Realiza PERMANOVA
 ```{r}
 permanova <- adonis2(dist_euclidea ~ Seasons*time , method = "bray", data=datos_PCA, permutations=999)
-
 permanova %>% pander()
-
 dist_euclidea <- stats::dist(val_estandarizado[10:18], method = "euclidean")
 ```
 
 
 ## 10. Presenta, interpreta resultados y realiza conclusión
+De acuerdo a Anderson los datos del permanova se deben estandarizar..............
 
 

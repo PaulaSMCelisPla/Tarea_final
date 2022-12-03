@@ -93,8 +93,8 @@ summary(messy)
 
 ## 9. Proponer hipótesis y realiza análisis estadístico de los datos, incluye evaluación de supuestos si corresponde
 
-# Hipótesis Nula: Existe una estructura de grupos separados por las variables categoricas estacionalidad y día. 
-# Hipótesis alternativa: No existe una estructura de grupos separados por las variables categoricas estacionalidad y día. 
+# Hipótesis Nula: No exista una estructura de grupos separados por las variables categoricas estacionalidad y día. 
+# Hipótesis alternativa: Existe una estructura de grupos separados por las variables categoricas estacionalidad y día. 
 
 # Habilita Librerias
 library(readxl)
@@ -135,7 +135,6 @@ fviz_pca_ind(PCA_Lesso, repel = TRUE, habillage = datos_PCA$Seasons,addEllipses 
 fviz_pca_var(PCA_Lesso)
 fviz_pca_biplot(PCA_Lesso, repel = TRUE, habillage = datos_PCA$Seasons,addEllipses = TRUE,pointsize = 3)
 
-
 # Crea nuevas variables estandarizadas
 val_estandarizado <- datos_PCA %>%
   select(Chla, Chlc, Car, PC, DPPH, Temperature, pH, Salinity, PAR) %>%
@@ -147,10 +146,12 @@ dist_euclidea <- dist(val_estandarizado[10:18]) #distancia euclidiana
 
 # Realiza PERMANOVA
 permanova <- adonis2(dist_euclidea ~ Seasons*time , method = "bray", data=datos_PCA, permutations=999)
+permanova <- adonis2(dist_euclidea ~ Seasons:time , method = "bray", data=datos_PCA, permutations=999)
 permanova %>% pander()
 dist_euclidea <- stats::dist(val_estandarizado[10:18], method = "euclidean")
 
 ## 10. Presenta, interpreta resultados y realiza conclusión
+Cita algun articulo para la estandarización 
 
 
 
