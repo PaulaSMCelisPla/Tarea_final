@@ -1,9 +1,3 @@
----
-output:
-  html_document: 
-    theme: null
-  pdf_document: default
----
 ----
 title: "Tarea_diplomado_Paula"
 author: "Dra. Paula Celis-Plá"

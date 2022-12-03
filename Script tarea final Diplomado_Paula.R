@@ -5,7 +5,7 @@
 # Diplomado en Análisis de Datos con R e Investigación reproducible para Biociencias
 # ----------------------------------------------------------
 
-# Remover objetos de la sesión de trabajo
+## Remover objetos de la sesión de trabajo
 rm(list = ls())
 
 # Habilita Librerias
