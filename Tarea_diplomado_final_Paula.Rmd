@@ -1,23 +1,13 @@
 ---
-output:
-  html_document: 
-    theme: null
-  pdf_document: default
----
-----
-title: "Tarea_diplomado_Paula"
+title: "Tarea_diplomado_final_Paula"
 author: "Dra. Paula Celis-Plá"
-date: "2022-10-04"
-output:
-  pdf_document: default
-  html_document: default
-editor_options: 
-  markdown: 
-    wrap: 72
-----
-**Evaluación de las respuestas fisiológicas y ambientales del alga *Lessonia spicata* en la Bahía de Valparaíso en prescencia de Cambio Climático**
+date: "2022-12-03"
+output: html_document
+---
 
-## Descripción del Trabajo
+## Evaluación de las respuestas fisiológicas y ambientales del alga *Lessonia spicata* en la Bahía de Valparaíso en prescencia de Cambio Climático
+
+** Descripción del Trabajo**
 
 La data actual corresponde a valores de variables fisiológicas y ambientales para el alga parda *Lessonia spicata*. 
 
@@ -28,7 +18,7 @@ Las variables fisológicas analizadas en este estudio fueron Clorofila a o Cla (
 
 ## Habilita Librerias
 
-```{r setup, include=FALSE, warning=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(stats)
 library(graphics)
@@ -53,6 +43,7 @@ Datos_Proyecto$time <- as.factor(Datos_Proyecto$time)
 summary(Datos_Proyecto)
 ```
 
+
 ## Histogramas con etiquetas y títulos
 
 ```{r}
@@ -71,6 +62,7 @@ gridExtra::grid.arrange(p1, p2, p3, p4, p5, ncol = 2)
 gridExtra::grid.arrange(p6, p7, p8, p9, ncol = 2)
 ```
 
+
 ## 4. Datos balanceados y tablas de frecuencia
 
 ** Los datos estan balanceados
@@ -79,6 +71,7 @@ gridExtra::grid.arrange(p6, p7, p8, p9, ncol = 2)
 str(Datos_Proyecto)
 knitr::kable(table(Datos_Proyecto$Seasons, Datos_Proyecto$time), caption = "Tabla de contingencia")
 ```
+
 
 ## 5. Relación entre variables cuantitativas y factores
 
@@ -89,7 +82,8 @@ variables categóricas.
 summary(Datos_Proyecto)
 ```
 
-## 5. Graficas de correlación de variables continuas (pearson)
+
+## 5. Gráficas de correlación de variables continuas (pearson)
 
 ```{r}
 pairs.panels(Datos_Proyecto[,3:11], method = "pearson", hist.col = "blue", density = TRUE, font=4)
@@ -102,11 +96,13 @@ pairs.panels(Datos_Proyecto[,3:11], method = "pearson", hist.col = "blue", densi
 pairs.panels(Datos_Proyecto[,3:7], method = "pearson", hist.col = "blue", density = TRUE, font=2)
 ```
 
+
 ** Se muestra correlación entre las segundas 4 variables continuas
 
 ```{r}
 pairs.panels(Datos_Proyecto[,8:11], method = "pearson", hist.col = "blue", density = TRUE, font=2)
 ```
+
 
 ## 5. Relación entre variables continuas y factores (boxplot)
 
@@ -121,6 +117,7 @@ ggplot(Datos_Proyecto, aes(x= Seasons, y=pH))+geom_boxplot(fill="green")+labs(ti
 ggplot(Datos_Proyecto, aes(x= Seasons, y=Salinity))+geom_boxplot(fill="brown")+labs(title = "BoxPlot", x= "Seasons", y= "Salinity")
 ggplot(Datos_Proyecto, aes(x= Seasons, y=PAR))+geom_boxplot(fill="yellow")+labs(title = "BoxPlot", x= "Seasons", y= "Radiación PAR")
 ```
+
 
 ## 6. Identificación si existen errores, datos faltantes o error atípico
 
@@ -147,12 +144,11 @@ head(Datos_Proyecto)
 select(Datos_Proyecto, Chla, Chlc, Car, DPPH)
 ```
 
+
 ```{r}
 Datos_tab <- Datos_Proyecto %>% group_by(Seasons) %>% summarize(n = n(), 
 Promedio_Chla = mean(Chla), Maximo_Chla = max(Chla), Promedio_Chlc = mean(Chlc), Maximo_Chlc = max(Chlc), Promedio_Car = mean(Car), Maximo_Car = max(Car), Promedio_PC = mean(PC), Maximo_PC = max(PC), Promedio_DPPH = mean(DPPH), Maximo_DPPH = max(DPPH), Promedio_Temperature = mean(Temperature), Maximo_Temperature = max(Temperature),Promedio_pH = mean(pH), Maximo_pH = max(pH), Promedio_Salinity = mean(Salinity), Maximo_Salinity = max(Salinity), Promedio_PAR = mean(PAR), Maximo_PAR = max(PAR))
-
 Datos_tab
-
 knitr::kable(Datos_tab, caption = "Tabla de medidas resumen")
 ```
 
@@ -165,6 +161,7 @@ Datos_tab2
 knitr::kable(Datos_tab2, caption = "Tabla de medidas resumen")
 ```
 
+
 ## 8. Utiliza Paquetes para importar datos a R como readxl o similar y paquetes tidyr, dplyr, ggplot2
 
 ```{r}
@@ -175,11 +172,13 @@ summary(Datos_Proyecto)
 summary(messy)
 ```
 
+
 ## 9. Proponer hipótesis y realiza análisis estadístico de los datos, incluye evaluación de supuestos si corresponde
 
-Hipótesis Nula: Existe una estructura de grupos separados por las variables categoricas estacionalidad y día. 
-Hipótesis alternativa: No existe una estructura de grupos separados por las variables categoricas estacionalidad y día. 
+Hipótesis Nula: No existe una estructura de grupos separados por las variables categoricas estacionalidad y día. 
+Hipótesis alternativa: Existe una estructura de grupos separados por las variables categoricas estacionalidad y día. 
 
+## habilita librerias 
 
 ```{r}
 library(readxl)
@@ -193,7 +192,8 @@ library(vegan) # 	Community Ecology Package: Ordination, Diversity and Dissimila
 library(dendextend) # extiende opciones de visualización
 ```
 
-# Importar datos proyecto.
+
+## Importar datos proyecto.
 ```{r}
 datos_PCA <- read_excel("Datos_Proyecto.xlsx", sheet = 1)
 summary(datos_PCA)
@@ -204,31 +204,34 @@ str(datos_PCA)
 
 ```
 
+
 ```{r}
 datos_PCA_mat <- as.matrix(datos_PCA[,-c(1:2)])
 str(datos_PCA_mat)
 ```
 
-# Correlación entre variables
+## Correlación entre variables
 
 ```{r}
 pairs.panels(datos_PCA_mat[,1:5], method = "pearson")
 pairs.panels(datos_PCA_mat[,6:9], method = "pearson")
 ```
 
-# Realiza PCA
+## Realiza PCA
 
 ```{r}
 PCA_Lesso <- prcomp(datos_PCA_mat, scale = TRUE)
 PCA_Lesso
 ```
-# Varianza explicada
+
+## Varianza explicada
 
 ```{r}
 get_eigenvalue(PCA_Lesso)
 fviz_eig(PCA_Lesso)
 ```
-# Grafica por sitio
+
+## Grafica por sitio
 
 ```{r}
 fviz_pca_ind(PCA_Lesso,
@@ -245,8 +248,9 @@ fviz_pca_biplot(PCA_Lesso,
                 addEllipses = TRUE,
                 pointsize = 3)
 ```
-                
-# Crea nuevas variables estandarizadas
+
+## Crea nuevas variables estandarizadas
+
 ```{r}
 val_estandarizado <- datos_PCA %>%
   select(Chla, Chlc, Car, PC, DPPH, Temperature, pH, Salinity, PAR) %>%
@@ -255,6 +259,7 @@ val_estandarizado <- datos_PCA %>%
 ```
 
 # Calcula matriz de distancia
+
 ```{r}
 dist_euclidea <- dist(val_estandarizado[10:18]) #distancia euclidiana 
 ```
@@ -266,8 +271,8 @@ permanova %>% pander()
 dist_euclidea <- stats::dist(val_estandarizado[10:18], method = "euclidean")
 ```
 
-
 ## 10. Presenta, interpreta resultados y realiza conclusión
-De acuerdo a Anderson los datos del permanova se deben estandarizar..............
+De acuerdo a Anderson (2008) los datos del permanova se deben estandarizar..............
+
 
 
