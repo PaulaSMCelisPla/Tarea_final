@@ -9,12 +9,11 @@ output: html_document
 
 ** Descripción del Trabajo**
 
-La data actual corresponde a valores de variables fisiológicas y ambientales para el alga parda *Lessonia spicata*. 
+** La data actual corresponde a valores de variables fisiológicas y ambientales para el alga parda *Lessonia spicata*. 
 
-Este estudio tiene por objetivo, evaluar la diferencias estadísticas de las variables fisiológicas y variables ambientales respecto a las variables categóricas estación del Año con 4 niveles; Otoño, Invierno, Primavera y Verano, y tiempo para 3 ciclos diarios con 3 niveles; dia 1, dia 2 y dia 3 con 9 valores.
+** Este estudio tiene por objetivo, evaluar la diferencias estadísticas de las variables fisiológicas y variables ambientales respecto a las variables categóricas estación del Año con 4 niveles; Otoño, Invierno, Primavera y Verano, y tiempo para 3 ciclos diarios con 3 niveles; dia 1, dia 2 y dia 3 con 9 valores.
 
-Las variables fisológicas analizadas en este estudio fueron Clorofila a o Cla (expresada en microgramos * gramos-1 de peso seco), Clorofila c = Clc (expresada en microgramos * gramos-1 de peso seco), Carotenos o Car (expresada en microgramos * gramos-1 de peso seco), Compuestos fenólicos o PC (expresada en miligramos * gramos-1 de peso seco), Actividad antioxidante o DPPH = actividad antioxidante (expresada en micromol de unidades de trolox * gramos-1 de peso seco), y las variables ambientales; temperatura (expresada en °C), pH (expresada en unidades de pH), Salinidad
-(expresada en psu) y Radiación fotosinteticamente activa o PAR (expresada en micromoles de fotones * m-2 * s-1), con un total de 108 observaciones.
+** Las variables fisológicas analizadas en este estudio fueron Clorofila a o Cla (expresada en microgramos * gramos-1 de peso seco), Clorofila c = Clc (expresada en microgramos * gramos-1 de peso seco), Carotenos o Car (expresada en microgramos * gramos-1 de peso seco), Compuestos fenólicos o PC (expresada en miligramos * gramos-1 de peso seco), Actividad antioxidante o DPPH = actividad antioxidante (expresada en micromol de unidades de trolox * gramos-1 de peso seco), y las variables ambientales; temperatura (expresada en °C), pH (expresada en unidades de pH), Salinidad (expresada en psu) y Radiación fotosinteticamente activa o PAR (expresada en micromoles de fotones * m-2 * s-1), con un total de 108 observaciones.
 
 ## Habilita Librerias
 
@@ -129,7 +128,7 @@ por ellos se observó poca dispersión.
 
 ** Los errores típicos en las variables se identifican a continuación;
 
-Variable Chlc : para la estación winter se registra un outlier Variable
+** Variable Chlc : para la estación winter se registra un outlier Variable
 Car : para la estación summer se registra un outlier Variable PC : se
 registran 2 valores en Spring Variable Temperature: 3 valores en spring
 Variable pH : 5 valores en spring Variable Salinity: 3 valores en
@@ -273,19 +272,19 @@ dist_euclidea <- stats::dist(val_estandarizado[10:18], method = "euclidean")
 
 ## 10. Presenta, interpreta resultados y realiza conclusión
 
-# Los resultados de los analisis de componentes principales, indican que la variable con mayor impacto sobre el componente principal 1 es la variable respuesta Car o Carotenos. Sin embargo para el componente principal 2 fueron las variables Chlc o Clorofila c y Salinity. 
+** Los resultados de los analisis de componentes principales, indican que la variable con mayor impacto sobre el componente principal 1 es la variable respuesta Car o Carotenos. Sin embargo para el componente principal 2 fueron las variables Chlc o Clorofila c y Salinity. 
 
-# Se observa que los 3 primeros componentes principales acumulan el 66.98 % de la variación total del análisis, de acuerdo a la varianza explicada. 
+** Se observa que los 3 primeros componentes principales acumulan el 66.98 % de la variación total del análisis, de acuerdo a la varianza explicada. 
 
-# El gráfico de las variables PCA, se observan de manera exploratoria como se relacionan estas, con los componentes principales de manera gráfica, observandose que las flechas mas largas para el componente principal 1 es decir la variable que tiene mayor impacto o mayor inersia - peso es la variable Car o Carotenos y luego Chla o Clorofila a, pero al tener un angulo muy pequeñlo entre ellas, se denota tambien el alto grado de crorrelación que existe entre estas. Asi tambien, para el componente principal 2, la variable con mayor peso es la varaiobel Salinity seguida por Chlc o Clorofila c. 
+** El gráfico de las variables PCA, se observan de manera exploratoria como se relacionan estas, con los componentes principales de manera gráfica, observandose que las flechas mas largas para el componente principal 1 es decir la variable que tiene mayor impacto o mayor inersia - peso es la variable Car o Carotenos y luego Chla o Clorofila a, pero al tener un angulo muy pequeñlo entre ellas, se denota tambien el alto grado de crorrelación que existe entre estas. Asi tambien, para el componente principal 2, la variable con mayor peso es la varaiobel Salinity seguida por Chlc o Clorofila c. 
 
-# Finalmente el grafico Biplot con las variables, muestra la clara relación de las variables respuestas para cada una de los datos obtenidos en las distintas estaciones del año y sus dias de ciclos diarios respectivos, que se han comparado en los análisis. Observándose los centroides o muestras que representan los valores medios de ese conjunto de datos para esa estación del año, dentro de la elipse que se demarca en las 4 estaciones del año, observando que para winter o invierno con elipse de color morado y simbolos de cruces, se separan de los otros grupos a la izquierda del gráfico, así como Autumn o otoño, de color rosado con circulos, que se observa definido hacia abajo y el solapamiento que se observa con Spring o primavera y Summer o verano en verde y celestes con triangulos y cuadrados, hacia arriba del gráfico.
+** Finalmente el grafico Biplot con las variables, muestra la clara relación de las variables respuestas para cada una de los datos obtenidos en las distintas estaciones del año y sus dias de ciclos diarios respectivos, que se han comparado en los análisis. Observándose los centroides o muestras que representan los valores medios de ese conjunto de datos para esa estación del año, dentro de la elipse que se demarca en las 4 estaciones del año, observando que para winter o invierno con elipse de color morado y simbolos de cruces, se separan de los otros grupos a la izquierda del gráfico, así como Autumn o otoño, de color rosado con circulos, que se observa definido hacia abajo y el solapamiento que se observa con Spring o primavera y Summer o verano en verde y celestes con triangulos y cuadrados, hacia arriba del gráfico.
 
-# De acuerdo a Anderson (2008) los datos del permanova hna sido estandarizados.
-# Referencias: Anderson, M. J., Gorley, R. N., and Clarke, K. R. (2008). PERMANOVA+ for PRIMER: Guide to software and statistical methods (Plymouth, UK: PRIMER-E).
+** De acuerdo a Anderson (2008) los datos del permanova hna sido estandarizados.
+** Referencias: Anderson, M. J., Gorley, R. N., and Clarke, K. R. (2008). PERMANOVA+ for PRIMER: Guide to software and statistical methods (Plymouth, UK: PRIMER-E).
 
 
-# El análisis del Permanova, logra establcere que existen separacion de grupos, ya que el valor del estadistico fue siginificativo para el anidado de Seasons o estaciones y Time o tiempo. Lo que permite concluir que se rechaza la "Hipótesis Nula" que indica que "No existe una estructura de grupos separados por las variables categoricas estacionalidad y día" y se acepta la "Hipótesis alternativa" la cual indica que "si existe una estructura de grupos separados por las variables categoricas estacionalidad y día". 
+** El análisis del Permanova, logra establcere que existen separacion de grupos, ya que el valor del estadistico fue siginificativo para el anidado de Seasons o estaciones y Time o tiempo. Lo que permite concluir que se rechaza la "Hipótesis Nula" que indica que "No existe una estructura de grupos separados por las variables categoricas estacionalidad y día" y se acepta la "Hipótesis alternativa" la cual indica que "si existe una estructura de grupos separados por las variables categoricas estacionalidad y día". 
 
 
 
