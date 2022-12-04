@@ -145,8 +145,8 @@ val_estandarizado <- datos_PCA %>%
 dist_euclidea <- dist(val_estandarizado[10:18]) #distancia euclidiana 
 
 # Realiza PERMANOVA
-permanova <- adonis2(dist_euclidea ~ Seasons*time , method = "bray", data=datos_PCA, permutations=999)
-permanova <- adonis2(dist_euclidea ~ Seasons:time , method = "bray", data=datos_PCA, permutations=999)
+permanova <- adonis2(dist_euclidea ~ Seasons*time , method = "bray", data=datos_PCA, permutations=999) #factores con interaccion 
+permanova <- adonis2(dist_euclidea ~ Seasons:time , method = "bray", data=datos_PCA, permutations=999) #factor anidado
 permanova %>% pander()
 dist_euclidea <- stats::dist(val_estandarizado[10:18], method = "euclidean")
 
