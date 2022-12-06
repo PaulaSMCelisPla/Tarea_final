@@ -151,7 +151,14 @@ permanova %>% pander()
 dist_euclidea <- stats::dist(val_estandarizado[10:18], method = "euclidean")
 
 ## 10. Presenta, interpreta resultados y realiza conclusión
-Cita algun articulo para la estandarización 
+# Los resultados de los análisis de componentes principales, indican que la variable con mayor impacto sobre el componente principal 1 es la variable respuesta Car o Carotenos. Sin embargo para el componente principal 2 fueron las variables Chlc o Clorofila c y Salinity o Salinidad. 
+# Se observa que los 3 primeros componentes principales acumulan el 66.98 % de la variación total del análisis, de acuerdo a la varianza explicada. 
+# El gráfico de las variables PCA, se observan de manera exploratoria como se relacionan estas, con los componentes principales de manera gráfica, observandose que las flechas mas largas fueron para el componente principal 1, es decir para la variable que tiene mayor impacto o mayor inersia - peso es la variable Car o Carotenos y luego Chla o Clorofila a, pero al tener un angulo muy pequeño entre ellas, se denota tambien el alto grado de correlación que existe entre ambas variables. Así también, para el componente principal 2, la variable con mayor peso fue la varaiable Salinity p Salidad, seguida por Chlc o Clorofila c. 
+# Finalmente el grafico Biplot con las variables, muestra una clara relación entre las variables respuestas para cada una de los datos obtenidos en las distintas estaciones del año y sus días de ciclos diarios respectivos, que se han compararon en los análisis. Observándose los centroides (muetsra con mayor tamaño) o muestras que representan los valores medios de ese conjunto de datos para cada estación del año, dentro de la elipse que se demarca en las 4 estaciones. Demostrando que para Winter o invierno la elipse de color morado y simbolos de cruces, se separan de los otros grupos a la izquierda del gráfico, así como Autumn o otoño, de color rosado con circulos, que se observa definido hacia abajo y el solapamiento que se observa con Spring o primavera y Summer o verano en verde y celeste con triangulos y cuadrados, respectivamnete, hacia arriba del gráfico.
+# De acuerdo a Anderson et al. (2008) los datos del permanova han sido estandarizados. 
+# Referencias: Anderson, M. J., Gorley, R. N., and Clarke, K. R. (2008). PERMANOVA+ for PRIMER: Guide to software and statistical methods (Plymouth, UK: PRIMER-E).
+# El análisis del Permanova, logra establecer que existen separación de grupos, ya que el valor del estadístico fue siginificativo para el anidado de Seasons o estaciones y Time o tiempo. Lo que permite concluir que se rechaza la "Hipótesis Nula" que indica que "No existe una estructura de grupos separados por las variables categoricas estacionalidad y día" y se acepta la "Hipótesis alternativa" la cual indica que "si, existe una estructura de grupos separados por las variables categoricas estacionalidad y día". 
+
 
 
 
