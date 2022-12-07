@@ -286,9 +286,18 @@ dist_euclidea <- stats::dist(val_estandarizado[10:18], method = "euclidean")
 ** Finalmente, el gráfico biplot mostró claramente la separación de los grupos de datos en función de las variables categóricas estaciones, mostrando para Winter (invierno) una elipse de color morado con simbolos de cruces, se separan de los otros grupos hacia la izquierda del gráfico, así como Autumn (otoño), con elipse de color rosado y circulos definida hacia abajo, y finalmente, se observa el solapamiento de Spring (primavera) y Summer (verano) en verde y celeste con triangulos y cuadrados, respectivamnete, hacia arriba del gráfico. Observándose los centroides o muestras que representan los valores medios de ese conjunto de datos para cada estación del año, dentro de la elipse que se demarca en las 4 estaciones. 
 
 ** De acuerdo a Anderson et al. (2008) los datos del permanova han sido estandarizados.
-** Referencias: Anderson, M. J., Gorley, R. N., and Clarke, K. R. (2008). PERMANOVA+ for PRIMER: Guide to software and statistical methods (Plymouth, UK: PRIMER-E).
 
 ** El análisis del Permanova, logró establecer que existen separación de grupos, ya que el valor del estadístico fue siginificativo para el anidado de Seasons o estaciones y Time o tiempo. Lo que permite concluir que se rechaza la "Hipótesis Nula" que indica que "No existe una estructura de grupos separados por las variables categoricas estacionalidad y día" y se acepta la "Hipótesis alternativa" la cual indica que "si, existe una estructura de grupos separados por las variables categoricas estacionalidad y día". 
+
+# Conclusiones 
+
+* Se logró concluir que los datos colectados en cada estación y sus días respectivos, se diferencian estadísticamente en función de las estacionalidad, es decir las respuestas fisiológicas y ambientales para esta alga son diferentes, presentando un patrón estacional.      
+
+
+# Referencias 
+
+** Referencias: Anderson, M. J., Gorley, R. N., and Clarke, K. R. (2008). PERMANOVA+ for PRIMER: Guide to software and statistical methods (Plymouth, UK: PRIMER-E).
+
 
 
 
