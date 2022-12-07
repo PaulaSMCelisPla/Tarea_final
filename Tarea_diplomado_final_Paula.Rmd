@@ -3,9 +3,9 @@ title: "Tarea_diplomado_final_Paula"
 author: "Dra. Paula Celis-Plá"
 date: "2022-10-04"
 output:
+  pdf_document: default
   word_document: default
   html_document: default
-  pdf_document: default
 ---
 
 ## Evaluación de las respuestas fisiológicas y ambientales del alga *Lessonia spicata* en la Bahía de Valparaíso en prescencia de Cambio Climático
